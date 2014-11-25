@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.toyo.gp.dao.KoujiImageMapper">
+
+    <insert id="insertImageByObject" parameterType="string">
+        INSERT INTO image(imagename) VALUE (#{object})
+    </insert>
+
+    <insert id="addImageByImage" parameterType="KoujiImage">
+        INSERT
+        INTO image(imagesyu, kaiteino, imagename, papersize, trkDate, bikou)
+        VALUES (#{imagesyu}, #{kaiteino}, #{imagename}, #{papersize}, #{trkDate}, #{bikou})
+    </insert>
+    
+    <select id="findIdByObject" parameterType="string" resultType="int">
+        SELECT id FROM image WHERE imagename=#{object}
+    </select>
+
+    <update id="updateSyuByImagename" parameterType="KoujiImage">
+        UPDATE image SET imagesyu=#{imagesyu} WHERE imagename=#{imagename}
+    </update>
+
+    <delete id="deleteImageByImagename" parameterType="string">
+        DELETE FROM image where imagename=#{object}
+    </delete>
+
+    <select id="findImagesById" parameterType="string" resultType="KoujiImage">
+        SELECT *
+        FROM image
+		WHERE id=#{id}
+    </select>
+
+
+
+    <update id="updateBikouByObject" parameterType="KoujiImage">
+        UPDATE image
+        SET bikou=#{bikou}
+        WHERE imagename=#{imagename}
+    </update>
+
+    <select id="findAllImages" resultType="KoujiImage">
+        SELECT * FROM image order by id;
+    </select>
+
+</mapper>
