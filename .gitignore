@@ -1,0 +1,6 @@
+workspace.xml
+.idea/artifacts/GP_war.xml
+.idea/artifacts/GP_war_exploded.xml
+GP.iml
+target/
+.idea/libraries/
