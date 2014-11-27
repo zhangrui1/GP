@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.toyo.gp.dao.MasterMapper">
+
+    <insert id="insertMaster" parameterType="Master">
+        INSERT
+        INTO master(placename,placenameUnit,ryakuplaceshortname)
+        VALUE (#{placename},#{placenameUnit},#{ryakuplaceshortname})
+    </insert>
+
+    <delete id="deleteMasterById" parameterType="string">
+        DELETE FROM master where id=#{id}
+    </delete>
+
+    <select id="findMasterById" parameterType="String" resultType="Master">
+        SELECT *
+        FROM master
+		WHERE id=#{id}
+    </select>
+
+    <update id="updateMasterByMaster" parameterType="Master">
+        UPDATE master
+        SET placename=#{placename},
+        placenameUnit=#{placenameUnit},
+        ryakuplaceshortname=#{ryakuplaceshortname}
+        WHERE id=#{id}
+    </update>
+
+    <select id="findAllMaster" resultType="Master">
+        SELECT * FROM master order by ryakuplaceshortname;
+    </select>
+
+    <select id="findAllMasterSortByPlacename" resultType="Master">
+        SELECT * FROM master order by placename;
+    </select>
+
+    <select id="findAllMasterSortByPlacenameUint" resultType="Master">
+        SELECT * FROM master order by placenameUnit;
+    </select>
+
+    <select id="getLastInsertId" resultType="int">
+        select id from master ORDER BY id DESC limit 1
+    </select>
+
+</mapper>

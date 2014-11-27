@@ -28,24 +28,6 @@
                         <i class="glyphicon glyphicon-user"></i>
                         <span>${user.username} <i class="caret"></i></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <!-- User image -->
-                        <li class="user-header bg-light-blue">
-                            <img id="headerProfile" src="/img/avatar.jpg" class="img-circle" alt="User Image" />
-                            <p>
-                                ${user.username} - ${user.department}
-                            </p>
-                        </li>
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <div class="pull-left">
-                                <a href="/profile/getUserProfile" class="btn btn-default btn-flat">プロフィール</a>
-                            </div>
-                            <div class="pull-right">
-                                <a href="/logout" class="btn btn-default btn-flat">退出</a>
-                            </div>
-                        </li>
-                    </ul>
                 </li>
             </ul>
         </div>

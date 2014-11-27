@@ -3685,3 +3685,6 @@ fieldset[disabled] .btn-vk.active {
     display:none;
     margin-bottom: 0px;
 }
+.master-row{
+    float:left;
+}

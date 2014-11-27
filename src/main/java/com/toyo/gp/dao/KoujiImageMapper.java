@@ -14,24 +14,23 @@ public interface KoujiImageMapper {
 
     List<KoujiImage> findAllImages();
 
+    void deleteKoujiImageById(String id);
+
+    void insertKoujiImage(KoujiImage koujiImage);
+
+    /**最新追加したデータのIDを取得*/
+    public int getLastInsertId();
+
+    void updateKoujiImageById(KoujiImage koujiImage);
 
 
 
-    void insertImageByObject(String object);
 
     int findIdByObject(String object);
 
     void updateSyuByImagename(KoujiImage image);
 
-
-    void deleteImageByImagename(String object);
-
-
     void addImageByImage(KoujiImage image);
-
-
-
-    void updateBikouByObject(KoujiImage image);
 
     String findBikouByObject(String object);
 }

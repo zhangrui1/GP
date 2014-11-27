@@ -1,12 +1,10 @@
-package com.toyo.gp.entity;
+package com.toyo.gp.dto;
 
-import com.toyo.gp.dto.KoujiImageForm;
 
 /**
- * Created by zhangrui on 25/11/14.
+ * Created by Lsr on 10/14/14.
  */
-public class KoujiImage {
-
+public class KoujiImageForm {
     public int id;
     public String filename;
     public String filepath;
@@ -20,20 +18,6 @@ public class KoujiImage {
     public String commend;
     public String trkDate;
     public String updDate;
-
-    public void makeupKoujiImageByForm(KoujiImageForm koujiImageForm){
-        setFilename(koujiImageForm.getFilename());
-        setFileid(koujiImageForm.getFileid());
-        setFilepath(koujiImageForm.getFilepath());
-        setFilethumbnail(koujiImageForm.getFilethumbnail());
-        setPlacename(koujiImageForm.getPlacename());
-        setPlaceshortname(koujiImageForm.getPlaceshortname());
-        setValveimagenum(koujiImageForm.getValveimagenum());
-        setDecideimagenum(koujiImageForm.getDecideimagenum());
-        setSizeimagenum(koujiImageForm.getSizeimagenum());
-        setCommend(koujiImageForm.getCommend());
-
-    }
 
     public int getId() {
         return id;
@@ -110,7 +94,4 @@ public class KoujiImage {
     public String getUpdDate(){return  updDate;}
 
     public void setUpdDate(String updDate){this.updDate=updDate;}
-
-
 }
-

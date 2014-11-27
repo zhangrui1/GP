@@ -10,13 +10,4 @@ public interface UserMapper {
 
     @Select("select * from user where userId=#{userId}")
     public User findByUserId(String userid);
-
-
-    public void updateUser(User user);
-
-    void updateUserWithoutProfile(User user);
-
-    void updateUserProfileById(String userid, String profile);
-
-    void updateUserProfileByUser(User user);
 }

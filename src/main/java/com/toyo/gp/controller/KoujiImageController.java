@@ -1,94 +1,94 @@
 package com.toyo.gp.controller;
 
+import com.toyo.gp.dto.KoujiImageForm;
 import com.toyo.gp.entity.KoujiImage;
-import com.toyo.gp.entity.User;
 import com.toyo.gp.service.KoujiImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by zhangrui on 11/25/14.
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/image")
 public class KoujiImageController {
 
     @Autowired
     KoujiImageService KoujiImageService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String index(HttpSession session,
-                                       ModelMap modelMap){
-        User user=(User)session.getAttribute("user");
-        //get real path
-        session.setAttribute("imageRoot","http://storage.googleapis.com/grouppacking/");
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String goValve(){
+        return "kouji/AddKoujiImage";
+    }
 
-        session.removeAttribute("image");
+    @RequestMapping(value="/add",method=RequestMethod.POST)
+    public String addKoujiImage(@ModelAttribute("KoujiImageForm")KoujiImageForm koujiImageForm,ModelMap modelMap,HttpSession session){
+
+        KoujiImage koujiImage=new KoujiImage();
+        koujiImage.makeupKoujiImageByForm(koujiImageForm);
+        koujiImage=KoujiImageService.insertKoujiImage(koujiImage);
+
 
         List<KoujiImage> newKoujiImages = KoujiImageService.getAllImages();
         modelMap.addAttribute("newKoujiImages",newKoujiImages);
+        modelMap.addAttribute("message","message");
 
-        String indexPath = (String)session.getAttribute("indexPath");
-//        if(null == indexPath) {
-////            index = luceneIndexService.generateRAMIndex();
-//            indexPath = luceneIndexService.generateLocalIndex();
-//        }
-//        session.setAttribute("indexPath",indexPath);
-        if(user == null) {
-            return "login";
-        } else {
-            return "index";
-        }
+        return  "index";
+
     }
 
-    @RequestMapping(value = "/getKoujiImageById", method = RequestMethod.POST, produces = "html/text;charset=UTF-8")
-    @ResponseBody
-    public KoujiImage getKoujiImageById(@RequestParam("id")String id){
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET, produces = "html/text;charset=UTF-8")
+//    @ResponseBody
+    public String getKoujiImageById(@PathVariable String id, ModelMap modelMap){
 
         KoujiImage koujiImage=new KoujiImage();
-        koujiImage=KoujiImageService.getImagesById(id);
-        return koujiImage;
+        koujiImage=KoujiImageService.getKoujiImagesById(id);
+        modelMap.addAttribute("koujiImage",koujiImage);
+
+        return "kouji/EditKoujiImage";
     }
 
-    @RequestMapping(value = "/deleteByImagename", method = RequestMethod.POST, produces = "html/text;charset=UTF-8")
-    @ResponseBody
-    public String deleteByImagename(@RequestParam("object")String object){
-        KoujiImageService.deleteImageByImagename(object);
-//        imagepartService.deleteRelationByImagename(object);
-        return object;
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "html/text;charset=UTF-8")
+//    @ResponseBody
+    public String updateKoujiImageById(@ModelAttribute("KoujiImageForm")KoujiImageForm koujiImageForm,@PathVariable String id, ModelMap modelMap){
+
+        KoujiImage koujiImage=new KoujiImage();
+        koujiImage.makeupKoujiImageByForm(koujiImageForm);
+        koujiImage.setId(Integer.valueOf(id));
+//        koujiImage.setFilename("");
+//        koujiImage.setFilepath("");
+//        koujiImage.setFileid("");
+//        koujiImage.setFilethumbnail("");
+
+        KoujiImageService.updateKoujiImageById(koujiImage);
+
+        List<KoujiImage> newKoujiImages = KoujiImageService.getAllImages();
+        modelMap.addAttribute("newKoujiImages",newKoujiImages);
+        modelMap.addAttribute("message","message");
+
+        return  "index";
     }
 
-    @RequestMapping(value = "/addRelation", method = RequestMethod.POST, produces = "html/text;charset=UTF-8")
-    @ResponseBody
-    public String addRelation(@RequestParam("partid") String partid,
-                              @RequestParam("object") String object){
-
-//        imagepartService.addRelation(partid,object);
-
-        return "";
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, produces = "html/text;charset=UTF-8")
+    public String deleteByImagename(@PathVariable String id,ModelMap modelMap){
+        KoujiImageService.deleteKoujiImageById(id);
+        List<KoujiImage> newKoujiImages = KoujiImageService.getAllImages();
+        modelMap.addAttribute("newKoujiImages",newKoujiImages);
+        modelMap.addAttribute("message","message");
+        return "index";
     }
 
-    @RequestMapping(value = "/submitBikouById", method = RequestMethod.POST, produces = "html/text;charset=UTF-8")
-    @ResponseBody
-    public String submitBikouById(@RequestParam("bikou")String bikou,
-                                  @RequestParam("object")String object){
-        KoujiImageService.updateBikouByObject(bikou, object);
-        return "";
-    }
 
     @RequestMapping(value = "/getBikouByObject", method = RequestMethod.GET, produces = "html/text;charset=UTF-8")
     @ResponseBody
     public String getBikouByObject(@RequestParam("object")String object){
         return KoujiImageService.getBikouByObject(object);
     }
+
+
 }

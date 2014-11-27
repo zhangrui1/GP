@@ -32,81 +32,26 @@
     <!-- Main content -->
             <section class="content">
 
-                <div class="row">
-                    <div class="col-lg-6 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-aqua">
-                            <div class="inner">
-                                <h3>
-                                    新規
-                                </h3>
-                                <p>
-                                    バルブ情報登録
-                                </p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="/item/add" class="small-box-footer">
-                                入る <i class="fa fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div><!-- ./col -->
-
-                    <div class="col-lg-6 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <h3>
-                                    一覧
-                                </h3>
-                                <p>
-                                    アイテム情報一覧
-                                </p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="/item" class="small-box-footer">
-                                入る <i class="fa fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div><!-- ./col -->
-
-                </div>
 
                     <div class="row">
                         <!-- collection -->
                         <div class="col-xs-12">
-
                             <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#tab_1" data-toggle="tab">最新バルブ</a></li>
-                                    <li class=""><a href="#tab_2" data-toggle="tab">編集履歴</a></li>
-
-                                    <div class="box-tools">
-                                        <div class="input-group">
-                                            <input type="text" name="table_search" id="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-default" id="table_search_btn"><i class="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_1">
                                         <table class="table table-hover valve-table">
-                                            <thead><tr>
-                                                <th>場所名</th>
-                                                <th>場所名略称</th>
-                                                <th>弁画像番号</th>
-                                                <th>decideImagenum</th>
-                                                <th>sizeImagenum</th>
+                                            <thead>
+                                            <tr>
+                                                <th>工事先</th>
+                                                <th>工事先略称</th>
+                                                <th>弁番号</th>
+                                                <th>決定図番号</th>
+                                                <th>寸法図番号</th>
                                                 <th>備考</th>
                                                 <th>操作</th>
                                             </tr></thead>
                                             <tbody>
-                                            <c:forEach items="${newKoujiImages}" var="newValve">
+                                            <c:forEach items="${newKoujiImages}" var="newKoujiImages">
                                                 <tr>
                                                     <td>${newKoujiImages.placename}</td>
                                                     <td>${newKoujiImages.placeshortname}</td>
@@ -114,12 +59,10 @@
                                                     <td>${newKoujiImages.decideimagenum}</td>
                                                     <td>${newKoujiImages.sizeimagenum}</td>
                                                     <td>${newKoujiImages.commend}</td>
-                                                    <td>${newKoujiImages.sousa}</td>
-
                                                     <td>
                                                         <div class="operation-button">
-                                                            <a class="btn btn-primary btn-sm operation-button-btn" href="/item/${newKoujiImages.id}"><i class="fa fa-pencil"></i></a>
-                                                            <a class="btn btn-danger btn-sm operation-button-btn" href="/item/${newKoujiImages.id}/delete"><i class="fa fa-trash-o"></i></a>
+                                                            <a class="btn btn-primary btn-sm operation-button-btn" href="/image/edit/${newKoujiImages.id}"><i class="fa fa-pencil"></i></a>
+                                                            <a class="btn btn-danger btn-sm operation-button-btn" href="/image/delete/${newKoujiImages.id}"><i class="fa fa-trash-o"></i></a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -131,7 +74,6 @@
                                 </div><!-- /.tab-content -->
                             </div>
                         </div>
-
                     </div>
             </section><!-- /.content -->
     </aside><!-- /.right-side -->

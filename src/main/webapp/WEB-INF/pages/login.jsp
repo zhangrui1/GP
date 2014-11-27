@@ -21,7 +21,7 @@
 
 <body class="">
 <div class="form-box" id="login-box">
-    <div class="header">Welcome to Valdac</div>
+    <div class="header">Welcome to GP</div>
     <form action="/login" method="post">
         <div class="body bg-gray">
             <div class="form-group">

@@ -1,14 +1,11 @@
-package com.toyo.gp.entity;
+package com.toyo.gp.dto;
 
-import com.toyo.gp.dto.KoujiImageForm;
-import com.toyo.gp.dto.MasterForm;
 
 /**
- * Created by zhangrui on 2014/11/25.
+ * Created by Lsr on 10/14/14.
  */
-public class Master {
+public class MasterForm {
 
-    /**マスターID*/
     public int id;
     /**マスター種別*/
     public String placename;
@@ -16,12 +13,6 @@ public class Master {
     public String placenameUnit;
     /**略称*/
     public String ryakuplaceshortname;
-
-    public void makeupMasterByForm(MasterForm masterForm){
-        setPlacename(masterForm.getPlacename());
-        setPlacenameUnit(masterForm.getPlacenameUnit());
-        setRyakuplaceshortname(masterForm.getRyakuplaceshortname());
-    }
 
 
     /*** マスターIDの取得と設定*/
@@ -47,5 +38,4 @@ public class Master {
     public void setRyakuplaceshortname(String ryakuplaceshortname){
         this.ryakuplaceshortname=ryakuplaceshortname;
     }
-
 }

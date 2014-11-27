@@ -2,8 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.toyo.gp.dao.KoujiImageMapper">
 
-    <insert id="insertImageByObject" parameterType="string">
-        INSERT INTO image(imagename) VALUE (#{object})
+    <insert id="insertKoujiImage" parameterType="KoujiImage">
+        INSERT
+        INTO image(filename,filepath,fileid,filethumbnail,placename,placeshortname,valveimagenum,decideimagenum,sizeimagenum,commend,trkDate,updDate)
+        VALUE (#{filename},#{filepath},#{fileid},#{filethumbnail},#{placename},#{placeshortname},#{valveimagenum},#{decideimagenum},#{sizeimagenum},#{commend},#{trkDate},#{updDate})
     </insert>
 
     <insert id="addImageByImage" parameterType="KoujiImage">
@@ -20,11 +22,11 @@
         UPDATE image SET imagesyu=#{imagesyu} WHERE imagename=#{imagename}
     </update>
 
-    <delete id="deleteImageByImagename" parameterType="string">
-        DELETE FROM image where imagename=#{object}
+    <delete id="deleteKoujiImageById" parameterType="string">
+        DELETE FROM image where id=#{id}
     </delete>
 
-    <select id="findImagesById" parameterType="string" resultType="KoujiImage">
+    <select id="findImagesById" parameterType="String" resultType="KoujiImage">
         SELECT *
         FROM image
 		WHERE id=#{id}
@@ -32,14 +34,28 @@
 
 
 
-    <update id="updateBikouByObject" parameterType="KoujiImage">
+    <update id="updateKoujiImageById" parameterType="KoujiImage">
         UPDATE image
-        SET bikou=#{bikou}
-        WHERE imagename=#{imagename}
+        SET filename=#{filename},
+        filepath=#{filepath},
+        fileid=#{fileid},
+        filethumbnail=#{filethumbnail},
+        placename=#{placename},
+        placeshortname=#{placeshortname},
+        valveimagenum=#{valveimagenum},
+        decideimagenum=#{decideimagenum},
+        sizeimagenum=#{sizeimagenum},
+        commend=#{commend},
+        updDate=#{updDate}
+        WHERE id=#{id}
     </update>
 
     <select id="findAllImages" resultType="KoujiImage">
-        SELECT * FROM image order by id;
+        SELECT * FROM image order by id DESC;
+    </select>
+
+    <select id="getLastInsertId" resultType="int">
+        select id from image ORDER BY id DESC limit 1
     </select>
 
 </mapper>

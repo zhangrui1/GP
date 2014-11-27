@@ -1,10 +1,13 @@
 package com.toyo.gp.service;
 
+import com.google.gson.Gson;
 import com.toyo.gp.dao.KoujiImageMapper;
 import com.toyo.gp.entity.KoujiImage;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,14 +20,25 @@ public class KoujiImageService {
     @Resource
     KoujiImageMapper koujiImageMapper;
 
-    public String insertImageByObject(String object) {
+    public KoujiImage insertKoujiImage(KoujiImage koujiImage) {
+        //append Date
+        Date date=new Date();
+        SimpleDateFormat sdf1=new SimpleDateFormat("yyyy/MM/dd");
+        koujiImage.setTrkDate(sdf1.format(date));
+        koujiImage.setUpdDate(sdf1.format(date));
 
-        koujiImageMapper.insertImageByObject(object);
+//        koujiImage.setFilename("");
+//        koujiImage.setFilepath("");
+//        koujiImage.setFileid("");
+//        koujiImage.setFilethumbnail("");
 
-        int id = koujiImageMapper.findIdByObject(object);
+//        Gson gson = new Gson();
+//        System.out.println(gson.toJson(koujiImage));
 
+        koujiImageMapper.insertKoujiImage(koujiImage);
+        koujiImage.setId(koujiImageMapper.getLastInsertId());
 
-        return ""+id;
+        return koujiImage;
     }
 
 //    public String addImageByImage(KoujiImage image){
@@ -45,11 +59,12 @@ public class KoujiImageService {
 //
 //    }
 
-    public void deleteImageByImagename(String object) {
-        koujiImageMapper.deleteImageByImagename(object);
+    public void deleteKoujiImageById(String id) {
+
+        koujiImageMapper.deleteKoujiImageById(id);
     }
 
-    public KoujiImage getImagesById(String id) {
+    public KoujiImage getKoujiImagesById(String id) {
 
         return koujiImageMapper.findImagesById(id);
     }
@@ -60,11 +75,16 @@ public class KoujiImageService {
     }
 
 
-    public void updateBikouByObject(String bikou, String object) {
-        KoujiImage image = new KoujiImage();
-//        image.setBikou(bikou);
-//        image.setImagename(object);
-        koujiImageMapper.updateBikouByObject(image);
+    public void updateKoujiImageById(KoujiImage koujiImage) {
+
+        //append Date
+        Date date=new Date();
+        SimpleDateFormat sdf1=new SimpleDateFormat("yyyy/MM/dd");
+        koujiImage.setUpdDate(sdf1.format(date));
+
+
+
+        koujiImageMapper.updateKoujiImageById(koujiImage);
     }
 
     public String getBikouByObject(String object) {
