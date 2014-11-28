@@ -41,7 +41,7 @@
                 </c:if>
 
                     <div class="row">
-                        <form action="/master/update/${master.id}" id="MasterForm" name="MasterForm" method="post">
+                        <form action="/master/update/${master.id}" id="MasterForm" name="MasterForm" method="post" onsubmit="return check()">
                         <!-- collection -->
                         <div class="col-xs-12">
                             <div class="nav-tabs-custom">
@@ -137,6 +137,22 @@
     });
 </script>
 
+<script type="text/javascript">
+    function check(){
+        var flag=0;
+        //必須項目設定
+        if(document.MasterForm.placename.value==""){flag=1;}
+
+        if(flag){
+            window.alert("工事先は必須入力項目です");
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+</script>
 <c:import url="../htmlframe/footerFrame.jsp" />
 
 </body>

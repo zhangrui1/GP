@@ -30,6 +30,10 @@
         SELECT * FROM master order by ryakuplaceshortname;
     </select>
 
+    <select id="findAllMasterSort" parameterType="String" resultType="Master">
+        SELECT * FROM master order by ${sortname};
+    </select>
+
     <select id="findAllMasterSortByPlacename" resultType="Master">
         SELECT * FROM master order by placename;
     </select>

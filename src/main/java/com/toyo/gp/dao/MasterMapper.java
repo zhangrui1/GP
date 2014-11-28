@@ -12,6 +12,8 @@ public interface MasterMapper {
 
     public List<Master> findAllMaster();
 
+    public List<Master> findAllMasterSort(String sortname);
+
     public List<Master> findAllMasterSortByPlacename();
 
     public List<Master> findAllMasterSortByPlacenameUint();

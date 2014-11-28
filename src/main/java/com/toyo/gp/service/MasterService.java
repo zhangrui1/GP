@@ -24,6 +24,13 @@ public class MasterService {
         return  masters;
     }
 
+    public List<Master> findAllMasterSort(String sortname) {
+
+        List<Master> masters = masterMapper.findAllMasterSort(sortname);
+        return  masters;
+    }
+
+
     public List<Master> getAllMasterBySortPlacename() {
 
         List<Master> masters = masterMapper.findAllMasterSortByPlacename();

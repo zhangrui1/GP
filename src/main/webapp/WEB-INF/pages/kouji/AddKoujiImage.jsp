@@ -44,7 +44,7 @@
 
 
 
-            <form action="/kouji/add" id="KoujiImageForm" name="KoujiImageForm" method="post">
+            <form action="/kouji/add" id="KoujiImageForm" name="KoujiImageForm" method="post" onsubmit="return check()">
                 <div class="col-lg-12">
                     <div class="box box-primary">
 
@@ -55,7 +55,7 @@
                                         <input type="button" class="btn btn-danger master-sousa" onclick="getAllMaster(this)" data-toggle="modal" data-target="#masterModal" id="8" value="工事先" />
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="text" id="placename" name="placename" class="form-control sousa" placeholder="工事先" value="${koujiImage.placename}">
+                                        <input type="text" id="placename" name="placename" class="form-control sousa" placeholder="工事先(必須)" value="${koujiImage.placename}">
                                     </div>
                                     <div class="col-md-3">
                                         <input type="text" id="placeshortname" name="placeshortname" class="form-control sousa" value="${koujiImage.placeshortname}">
@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        弁番号
+                                        弁番号(必須)
                                     </div>
                                     <div class="col-md-10">
                                         <input type="text" name="valveimagenum" class="form-control" value="${koujiImage.valveimagenum}" />
@@ -199,7 +199,23 @@
     });
 </script>
 
+<script type="text/javascript">
+    function check(){
+        var flag=0;
+        //必須項目設定
+        if(document.KoujiImageForm.placename.value==""){flag=1;}
+        if(document.KoujiImageForm.valveimagenum.value==""){flag=1;}
 
+        if(flag){
+            window.alert("必須項目を入力ください");
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+</script>
 <c:import url="../htmlframe/leftFrame.jsp" />
 
 </body>

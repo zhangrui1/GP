@@ -36,6 +36,7 @@ public class MasterController {
      * */
     @RequestMapping(value="/sort/placename",method = RequestMethod.GET,produces = "text/html;charset=UTF-8")
     public String sortplacename(HttpSession session,ModelMap modelMap){
+//        String sortname="placename";
         List<Master> masterLists = masterService.getAllMasterBySortPlacename();
         modelMap.addAttribute("masterLists",masterLists);
 

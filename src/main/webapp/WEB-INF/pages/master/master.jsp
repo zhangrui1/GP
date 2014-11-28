@@ -31,8 +31,19 @@
 
         <!-- Main content -->
         <section class="content">
+
+
+            <c:if test="${message != null}">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-success alert-dismissable">${message}</div>
+                    </div>
+                </div>
+            </c:if>
+
+
             <div class="row">
-                <form action="/master/add" id="MasterForm" name="MasterForm" method="post">
+                <form action="/master/add" id="MasterForm" name="MasterForm" method="post" onsubmit="return check()">
                     <%--<tr>--%>
                     <%--<td><input type="text" name="placename" class="form-control" value="工事先" /></td>--%>
                     <%--<td><input type="text" name="placenameUnit" class="form-control" value="ユニーク" /></td>--%>
@@ -41,7 +52,7 @@
                     <div class="master-row">
                         <div class="col-md-3">
                             <input type="text" id="placename" name="placename" class="form-control sousa"
-                                   placeholder="工事先">
+                                   placeholder="工事先(必須)">
                         </div>
                         <div class="col-md-2">
                             <input type="text" id="placenameUnit" name="placenameUnit" class="form-control sousa"
@@ -156,6 +167,23 @@
         });
 
     });
+</script>
+
+<script type="text/javascript">
+    function check(){
+        var flag=0;
+        //必須項目設定
+        if(document.MasterForm.placename.value==""){flag=1;}
+
+        if(flag){
+            window.alert("工事先は必須入力項目です");
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
 </script>
 
 <c:import url="../htmlframe/footerFrame.jsp"/>
