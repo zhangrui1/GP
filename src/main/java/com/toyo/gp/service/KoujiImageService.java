@@ -27,37 +27,12 @@ public class KoujiImageService {
         koujiImage.setTrkDate(sdf1.format(date));
         koujiImage.setUpdDate(sdf1.format(date));
 
-//        koujiImage.setFilename("");
-//        koujiImage.setFilepath("");
-//        koujiImage.setFileid("");
-//        koujiImage.setFilethumbnail("");
-
-//        Gson gson = new Gson();
-//        System.out.println(gson.toJson(koujiImage));
-
         koujiImageMapper.insertKoujiImage(koujiImage);
         koujiImage.setId(koujiImageMapper.getLastInsertId());
 
         return koujiImage;
     }
 
-//    public String addImageByImage(KoujiImage image){
-//
-//
-//        koujiImageMapper.addImageByImage(image);
-//        int id = koujiImageMapper.findIdByObject(image.getImagename());
-//
-//        return ""+id;
-//    }
-
-//    public void updateSyuByImagename(String imagesyu, String object) {
-//
-//        KoujiImage image = new KoujiImage();
-//        image.setImagesyu(imagesyu);
-//        image.setImagename(object);
-//        koujiImageMapper.updateSyuByImagename(image);
-//
-//    }
 
     public void deleteKoujiImageById(String id) {
 
@@ -74,6 +49,10 @@ public class KoujiImageService {
         return koujiImageMapper.findAllImages();
     }
 
+    public List<KoujiImage> searchKoujiImage(KoujiImage koujiImage) {
+
+        return koujiImageMapper.findKoujiImagesByKouji(koujiImage);
+    }
 
     public void updateKoujiImageById(KoujiImage koujiImage) {
 
@@ -86,8 +65,8 @@ public class KoujiImageService {
 
         koujiImageMapper.updateKoujiImageById(koujiImage);
     }
-
-    public String getBikouByObject(String object) {
-        return koujiImageMapper.findBikouByObject(object);
-    }
+//
+//    public String getBikouByObject(String object) {
+//        return koujiImageMapper.findBikouByObject(object);
+//    }
 }

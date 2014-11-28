@@ -42,7 +42,21 @@ public class KoujiImageController {
 
         List<KoujiImage> newKoujiImages = koujiImageService.getAllImages();
         modelMap.addAttribute("newKoujiImages",newKoujiImages);
-        modelMap.addAttribute("message","message");
+        modelMap.addAttribute("message","追加しました");
+
+        return  "index";
+
+    }
+
+    @RequestMapping(value="/search",method=RequestMethod.POST)
+    public String searchKoujiImage(@ModelAttribute("KoujiImageForm")KoujiImageForm koujiImageForm,ModelMap modelMap,HttpSession session){
+
+        KoujiImage koujiImage=new KoujiImage();
+        koujiImage.makeupKoujiImageByForm(koujiImageForm);
+        List<KoujiImage> newKoujiImages= koujiImageService.searchKoujiImage(koujiImage);
+
+        modelMap.addAttribute("newKoujiImages",newKoujiImages);
+        modelMap.addAttribute("message",newKoujiImages.size());
 
         return  "index";
 
@@ -94,12 +108,12 @@ public class KoujiImageController {
         return "index";
     }
 
-
-    @RequestMapping(value = "/getBikouByObject", method = RequestMethod.GET, produces = "html/text;charset=UTF-8")
-    @ResponseBody
-    public String getBikouByObject(@RequestParam("object")String object){
-        return koujiImageService.getBikouByObject(object);
-    }
+//
+//    @RequestMapping(value = "/getBikouByObject", method = RequestMethod.GET, produces = "html/text;charset=UTF-8")
+//    @ResponseBody
+//    public String getBikouByObject(@RequestParam("object")String object){
+//        return koujiImageService.getBikouByObject(object);
+//    }
 
 
 }

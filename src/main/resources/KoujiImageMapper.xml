@@ -32,6 +32,15 @@
 		WHERE id=#{id}
     </select>
 
+    <select id="findKoujiImagesByKouji" parameterType="KoujiImage" resultType="KoujiImage">
+        SELECT *
+        FROM kouji
+        WHERE placename like "%${placename}%" and
+              placeshortname like "%${placeshortname}%" and
+              valveimagenum like "%${valveimagenum}%" and
+              decideimagenum like "%${decideimagenum}%" and
+              sizeimagenum like "%${sizeimagenum}%"
+    </select>
 
 
     <update id="updateKoujiImageById" parameterType="KoujiImage">

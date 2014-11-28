@@ -32,8 +32,53 @@
     <!-- Main content -->
             <section class="content">
 
+                <div class="row">
+
+                    <div class="box-header">
+                        <h3 class="box-title">GP検索</h3>
+                    </div>
+
+                    <form action="/kouji/search" id="KoujiImageForm" name="KoujiImageForm" method="post">
+                        <div class="master-row">
+                            <div class="col-md-3">
+                                <input type="text" id="placename" name="placename" class="form-control"
+                                       placeholder="工事先">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" id="placeshortname" name="placeshortname" class="form-control"
+                                       placeholder="略称">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" id="valveimagenum" name="valveimagenum"
+                                       class="form-control" placeholder="弁番号">
+                            </div>
+
+                            <div class="col-md-2">
+                                <input type="text" id="decideimagenum" name="decideimagenum"
+                                       class="form-control" placeholder="決定図番号">
+                            </div>
+
+                            <div class="col-md-2">
+                                <input type="text" id="sizeimagenum" name="sizeimagenum"
+                                       class="form-control" placeholder="寸法図番号">
+                            </div>
+
+                            <button class="btn btn-success">
+                                <i class="fa fa-save"></i> 検索
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
 
                     <div class="row">
+
+                        <div class="box-header">
+                            <h3 class="box-title">GP一覧</h3>
+                        </div>
+
                         <!-- collection -->
                         <div class="col-xs-12">
                             <div class="nav-tabs-custom">
