@@ -60,7 +60,7 @@
     </update>
 
     <select id="findAllImages" resultType="KoujiImage">
-        SELECT * FROM kouji order by id DESC;
+        SELECT * FROM kouji order by updDate DESC limit 50;
     </select>
 
     <select id="getLastInsertId" resultType="int">

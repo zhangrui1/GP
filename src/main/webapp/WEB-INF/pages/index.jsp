@@ -84,27 +84,27 @@
                             <div class="nav-tabs-custom">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_1">
-                                        <table class="table table-hover valve-table">
+                                        <table class="table table-hover valve-table" width="100%">
                                             <thead>
                                             <tr>
-                                                <th>工事先</th>
-                                                <th>工事先略称</th>
-                                                <th>弁番号</th>
-                                                <th>決定図番号</th>
-                                                <th>寸法図番号</th>
-                                                <th>備考</th>
-                                                <th>操作</th>
+                                                <th width="30%">工事先</th>
+                                                <th width="5%">工事先略称</th>
+                                                <th width="5%">弁番号</th>
+                                                <th width="20%">決定図番号</th>
+                                                <th width="20%">寸法図番号</th>
+                                                <th width="10%">備考</th>
+                                                <th width="10%">操作</th>
                                             </tr></thead>
                                             <tbody>
                                             <c:forEach items="${newKoujiImages}" var="newKoujiImages">
                                                 <tr>
-                                                    <td>${newKoujiImages.placename}</td>
-                                                    <td>${newKoujiImages.placeshortname}</td>
-                                                    <td>${newKoujiImages.valveimagenum}</td>
-                                                    <td>${newKoujiImages.decideimagenum}</td>
-                                                    <td>${newKoujiImages.sizeimagenum}</td>
-                                                    <td>${newKoujiImages.commend}</td>
-                                                    <td>
+                                                    <td width="30%">${newKoujiImages.placename}</td>
+                                                    <td width="5%">${newKoujiImages.placeshortname}</td>
+                                                    <td width="5%">${newKoujiImages.valveimagenum}</td>
+                                                    <td width="20%">${newKoujiImages.decideimagenum}</td>
+                                                    <td width="20%">${newKoujiImages.sizeimagenum}</td>
+                                                    <td width="10%">${newKoujiImages.commend}</td>
+                                                    <td width="10%">
                                                         <div class="operation-button">
                                                             <a class="btn btn-primary btn-sm operation-button-btn" href="/kouji/edit/${newKoujiImages.id}"><i class="fa fa-pencil"></i></a>
                                                             <a class="btn btn-danger btn-sm operation-button-btn" href="/kouji/delete/${newKoujiImages.id}"><i class="fa fa-trash-o"></i></a>

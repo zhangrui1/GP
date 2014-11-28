@@ -220,7 +220,7 @@
     function check(){
         var flag=0;
         //必須項目設定
-        if(document.KoujiImageForm.placename.value==""){flag=1;}
+//        if(document.KoujiImageForm.placename.value==""){flag=1;}
         if(document.KoujiImageForm.valveimagenum.value==""){flag=1;}
 
         if(flag){
