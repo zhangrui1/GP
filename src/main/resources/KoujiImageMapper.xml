@@ -4,38 +4,38 @@
 
     <insert id="insertKoujiImage" parameterType="KoujiImage">
         INSERT
-        INTO image(filename,filepath,fileid,filethumbnail,placename,placeshortname,valveimagenum,decideimagenum,sizeimagenum,commend,trkDate,updDate)
+        INTO kouji(filename,filepath,fileid,filethumbnail,placename,placeshortname,valveimagenum,decideimagenum,sizeimagenum,commend,trkDate,updDate)
         VALUE (#{filename},#{filepath},#{fileid},#{filethumbnail},#{placename},#{placeshortname},#{valveimagenum},#{decideimagenum},#{sizeimagenum},#{commend},#{trkDate},#{updDate})
     </insert>
 
     <insert id="addImageByImage" parameterType="KoujiImage">
         INSERT
-        INTO image(imagesyu, kaiteino, imagename, papersize, trkDate, bikou)
+        INTO kouji(imagesyu, kaiteino, imagename, papersize, trkDate, bikou)
         VALUES (#{imagesyu}, #{kaiteino}, #{imagename}, #{papersize}, #{trkDate}, #{bikou})
     </insert>
     
     <select id="findIdByObject" parameterType="string" resultType="int">
-        SELECT id FROM image WHERE imagename=#{object}
+        SELECT id FROM kouji WHERE imagename=#{object}
     </select>
 
     <update id="updateSyuByImagename" parameterType="KoujiImage">
-        UPDATE image SET imagesyu=#{imagesyu} WHERE imagename=#{imagename}
+        UPDATE kouji SET imagesyu=#{imagesyu} WHERE imagename=#{imagename}
     </update>
 
     <delete id="deleteKoujiImageById" parameterType="string">
-        DELETE FROM image where id=#{id}
+        DELETE FROM kouji where id=#{id}
     </delete>
 
     <select id="findImagesById" parameterType="String" resultType="KoujiImage">
         SELECT *
-        FROM image
+        FROM kouji
 		WHERE id=#{id}
     </select>
 
 
 
     <update id="updateKoujiImageById" parameterType="KoujiImage">
-        UPDATE image
+        UPDATE kouji
         SET filename=#{filename},
         filepath=#{filepath},
         fileid=#{fileid},
@@ -51,11 +51,11 @@
     </update>
 
     <select id="findAllImages" resultType="KoujiImage">
-        SELECT * FROM image order by id DESC;
+        SELECT * FROM kouji order by id DESC;
     </select>
 
     <select id="getLastInsertId" resultType="int">
-        select id from image ORDER BY id DESC limit 1
+        select id from kouji ORDER BY id DESC limit 1
     </select>
 
 </mapper>

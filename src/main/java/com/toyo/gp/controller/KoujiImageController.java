@@ -1,7 +1,10 @@
 package com.toyo.gp.controller;
 
+import com.google.gson.Gson;
 import com.toyo.gp.dto.KoujiImageForm;
+import com.toyo.gp.entity.Image;
 import com.toyo.gp.entity.KoujiImage;
+import com.toyo.gp.service.ImageService;
 import com.toyo.gp.service.KoujiImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +18,14 @@ import java.util.List;
  * Created by zhangrui on 11/25/14.
  */
 @Controller
-@RequestMapping("/image")
+@RequestMapping("/kouji")
 public class KoujiImageController {
 
     @Autowired
-    KoujiImageService KoujiImageService;
+    KoujiImageService koujiImageService;
+
+    @Autowired
+    ImageService imageService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String goValve(){
@@ -31,10 +37,10 @@ public class KoujiImageController {
 
         KoujiImage koujiImage=new KoujiImage();
         koujiImage.makeupKoujiImageByForm(koujiImageForm);
-        koujiImage=KoujiImageService.insertKoujiImage(koujiImage);
+        koujiImage= koujiImageService.insertKoujiImage(koujiImage);
 
 
-        List<KoujiImage> newKoujiImages = KoujiImageService.getAllImages();
+        List<KoujiImage> newKoujiImages = koujiImageService.getAllImages();
         modelMap.addAttribute("newKoujiImages",newKoujiImages);
         modelMap.addAttribute("message","message");
 
@@ -46,9 +52,12 @@ public class KoujiImageController {
 //    @ResponseBody
     public String getKoujiImageById(@PathVariable String id, ModelMap modelMap){
 
-        KoujiImage koujiImage=new KoujiImage();
-        koujiImage=KoujiImageService.getKoujiImagesById(id);
+        KoujiImage koujiImage=koujiImageService.getKoujiImagesById(id);
         modelMap.addAttribute("koujiImage",koujiImage);
+
+        String koujiId=id;
+        List<Image> images= imageService.getAllImagesByKoujiId(koujiId);
+        modelMap.addAttribute("images",images);
 
         return "kouji/EditKoujiImage";
     }
@@ -60,24 +69,26 @@ public class KoujiImageController {
         KoujiImage koujiImage=new KoujiImage();
         koujiImage.makeupKoujiImageByForm(koujiImageForm);
         koujiImage.setId(Integer.valueOf(id));
-//        koujiImage.setFilename("");
-//        koujiImage.setFilepath("");
-//        koujiImage.setFileid("");
-//        koujiImage.setFilethumbnail("");
 
-        KoujiImageService.updateKoujiImageById(koujiImage);
+        koujiImageService.updateKoujiImageById(koujiImage);
 
-        List<KoujiImage> newKoujiImages = KoujiImageService.getAllImages();
+        List<KoujiImage> newKoujiImages = koujiImageService.getAllImages();
         modelMap.addAttribute("newKoujiImages",newKoujiImages);
-        modelMap.addAttribute("message","message");
+        modelMap.addAttribute("koujiImage",koujiImage);
 
-        return  "index";
+        String koujiId=id;
+        List<Image> images= imageService.getAllImagesByKoujiId(koujiId);
+        modelMap.addAttribute("images",images);
+
+        modelMap.addAttribute("message","更新しました");
+
+        return  "kouji/EditKoujiImage";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, produces = "html/text;charset=UTF-8")
     public String deleteByImagename(@PathVariable String id,ModelMap modelMap){
-        KoujiImageService.deleteKoujiImageById(id);
-        List<KoujiImage> newKoujiImages = KoujiImageService.getAllImages();
+        koujiImageService.deleteKoujiImageById(id);
+        List<KoujiImage> newKoujiImages = koujiImageService.getAllImages();
         modelMap.addAttribute("newKoujiImages",newKoujiImages);
         modelMap.addAttribute("message","message");
         return "index";
@@ -87,7 +98,7 @@ public class KoujiImageController {
     @RequestMapping(value = "/getBikouByObject", method = RequestMethod.GET, produces = "html/text;charset=UTF-8")
     @ResponseBody
     public String getBikouByObject(@RequestParam("object")String object){
-        return KoujiImageService.getBikouByObject(object);
+        return koujiImageService.getBikouByObject(object);
     }
 
 

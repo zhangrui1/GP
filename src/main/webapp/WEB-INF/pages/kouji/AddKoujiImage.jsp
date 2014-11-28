@@ -44,7 +44,7 @@
 
 
 
-            <form action="/image/add" id="KoujiImageForm" name="KoujiImageForm" method="post">
+            <form action="/kouji/add" id="KoujiImageForm" name="KoujiImageForm" method="post">
                 <div class="col-lg-12">
                     <div class="box box-primary">
 
@@ -118,9 +118,6 @@
                     </div>
                 </div>
             </form>
-
-
-
 
         </section><!-- /.content -->
     </aside><!-- /.right-side -->

@@ -32,6 +32,14 @@
     <!-- Main content -->
             <section class="content">
 
+                <c:if test="${message != null}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-success alert-dismissable">${message}</div>
+                        </div>
+                    </div>
+                </c:if>
+
                     <div class="row">
                         <form action="/master/update/${master.id}" id="MasterForm" name="MasterForm" method="post">
                         <!-- collection -->
@@ -72,12 +80,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <button class="btn btn-success">
-                                                <i class="fa fa-save"></i> 更新
-                                            </button>
-
-                                    </div><!-- /.tab-pane -->
+                                  　  </div><!-- /.tab-pane -->
+                                        <div class="box-body clearfix">
+                                            <div class="form-group">
+                                                <button class="btn btn-success pull-right">
+                                                    <i class="fa fa-save"></i> 更新
+                                                </button>
+                                            </div>
+                                        </div>
                                 </div><!-- /.tab-content -->
                             </div>
                         </div>

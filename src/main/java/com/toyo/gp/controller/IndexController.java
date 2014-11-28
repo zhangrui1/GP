@@ -28,7 +28,7 @@ public class IndexController {
                                        ModelMap modelMap){
         User user=(User)session.getAttribute("user");
         //get real path
-        session.setAttribute("imageRoot","http://storage.googleapis.com/grouppacking/");
+        session.setAttribute("imageRoot","http://storage.googleapis.com/glandpacking/");
 
         session.removeAttribute("image");
 

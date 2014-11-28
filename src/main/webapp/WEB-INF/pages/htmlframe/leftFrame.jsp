@@ -33,7 +33,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li id="left-menu-new">
-                    <a href="/image/add">
+                    <a href="/kouji/add">
                         <i class="fa fa-paste"></i> <span>新規GP登録</span>
                     </a>
                 </li>

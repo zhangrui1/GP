@@ -93,8 +93,8 @@ public class MasterController {
 
         Master master=masterService.getMasterByid(id);
 
-        Gson gson=new Gson();
-        System.out.println(gson.toJson(master));
+//        Gson gson=new Gson();
+//        System.out.println(gson.toJson(master));
 //        masterService.UpdateMaster(master);
 
         modelMap.addAttribute("master",master);
@@ -119,8 +119,11 @@ public class MasterController {
 
         List<Master> masterLists = masterService.getAllMaster();
         modelMap.addAttribute("masterLists",masterLists);
+        modelMap.addAttribute("master",master);
 
-        return "master/master";
+        modelMap.addAttribute("message","更新しました");
+
+        return "master/EditMaster";
     }
 
     /**
@@ -140,7 +143,7 @@ public class MasterController {
 /**
  * GP工事新規、編集画面の工事先リストを取得用
  * */
-    @RequestMapping(value="/getAllMaster",method = RequestMethod.GET,produces = "text/html;charset=UTF-8")
+    @RequestMapping(value="/getAllMaster",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String getMasterJson() {
 

@@ -45,7 +45,7 @@
                                 <div class="col-md-2">
                                     <input type="text" id="placenameUnit" name="placenameUnit" class="form-control sousa" placeholder="ユニーク" >
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <input type="text" id="ryakuplaceshortname" name="ryakuplaceshortname" class="form-control sousa" placeholder="略称">
                                 </div>
                                 <button class="btn btn-success">

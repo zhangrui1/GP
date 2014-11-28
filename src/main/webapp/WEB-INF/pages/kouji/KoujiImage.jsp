@@ -45,7 +45,7 @@
 
         <!-- add content modal -->
         <div id="kiki-modal" class="modal fade content-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <form action="/image/add" id="KoujiImageForm" name="KoujiImageForm" method="post">
+            <form action="/kouji/add" id="KoujiImageForm" name="KoujiImageForm" method="post">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">

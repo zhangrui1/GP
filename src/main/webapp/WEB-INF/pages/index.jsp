@@ -61,8 +61,8 @@
                                                     <td>${newKoujiImages.commend}</td>
                                                     <td>
                                                         <div class="operation-button">
-                                                            <a class="btn btn-primary btn-sm operation-button-btn" href="/image/edit/${newKoujiImages.id}"><i class="fa fa-pencil"></i></a>
-                                                            <a class="btn btn-danger btn-sm operation-button-btn" href="/image/delete/${newKoujiImages.id}"><i class="fa fa-trash-o"></i></a>
+                                                            <a class="btn btn-primary btn-sm operation-button-btn" href="/kouji/edit/${newKoujiImages.id}"><i class="fa fa-pencil"></i></a>
+                                                            <a class="btn btn-danger btn-sm operation-button-btn" href="/kouji/delete/${newKoujiImages.id}"><i class="fa fa-trash-o"></i></a>
                                                         </div>
                                                     </td>
                                                 </tr>
