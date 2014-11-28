@@ -55,7 +55,7 @@
                                         <input type="button" class="btn btn-danger master-sousa" onclick="getAllMaster(this)" data-toggle="modal" data-target="#masterModal" id="8" value="工事先" />
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="text" id="placename" name="placename" class="form-control sousa" placeholder="工事先(必須)" value="${koujiImage.placename}">
+                                        <input type="text" id="placename" name="placename" class="form-control sousa" placeholder="工事先" value="${koujiImage.placename}">
                                     </div>
                                     <div class="col-md-3">
                                         <input type="text" id="placeshortname" name="placeshortname" class="form-control sousa" value="${koujiImage.placeshortname}">
