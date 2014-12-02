@@ -2,5 +2,9 @@ workspace.xml
 .idea/artifacts/GP_war.xml
 .idea/artifacts/GP_war_exploded.xml
 GP.iml
-target/
+target/classes
+target/generated-sources
+target/generated-test-sources
+target/GP
+target/test-classes
 .idea/libraries/
